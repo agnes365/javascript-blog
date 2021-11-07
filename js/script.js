@@ -49,8 +49,21 @@ function generateTitleLinks() {
   /* [DONE] clear link list */
   const titleList = document.querySelector('.list.titles');
   titleList.innerHTML = '';
-  
 
+  /* [DONE] Get article list */
+  const articles = document.querySelectorAll('.post');
+  for (let article of articles) {
+    /*[DONE] Get article id */
+    const articleId = article.getAttribute('id');
+    /* [DONE] Get article title*/
+    const articleTitle = article.querySelector('.post-title').innerHTML;
+    /* [DONE]Create link */
+    const link = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    console.log(link);
+
+    /* [DONE] Add link to list*/
+    titleList.insertAdjacentHTML('afterend', link);
+  }
 }
 
 generateTitleLinks();
