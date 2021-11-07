@@ -17,7 +17,7 @@ function titleClickHandler(event) {
 
   console.log('clickedElement:', clickedElement);
   console.log('clickedElement (with plus): ' + clickedElement);
-  clickedElement.classList.add("active");
+  clickedElement.classList.add('active');
 
   /* [DONE] remove class 'active' from all articles */
 
@@ -36,7 +36,7 @@ function titleClickHandler(event) {
   console.log(targetArticle);
 
   /* [DONE] add class 'active' to the correct article */
-  targetArticle.classList.add("active");
+  targetArticle.classList.add('active');
 }
 
 function generateTitleLinks() {
