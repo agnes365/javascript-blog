@@ -50,6 +50,7 @@ function generateTitleLinks() {
   const titleList = document.querySelector('.list.titles');
   titleList.innerHTML = '';
 
+  let html = '';
   /* [DONE] Get article list */
   const articles = document.querySelectorAll('.post');
   for (let article of articles) {
@@ -60,10 +61,11 @@ function generateTitleLinks() {
     /* [DONE]Create link */
     const link = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     console.log(link);
-
+  
     /* [DONE] Add link to list*/
-    titleList.insertAdjacentHTML('afterend', link);
+    html = html + link;
   }
+  titleList.insertAdjacentHTML('afterend', html);
 }
 
 generateTitleLinks();
