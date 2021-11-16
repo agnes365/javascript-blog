@@ -1,5 +1,7 @@
 'use strict';
-
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+};
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
@@ -63,11 +65,12 @@ function generateTitleLinks(customSelector = '') {
     /* [DONE] Get article title*/
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
     /* [DONE]Create link */
-    const link = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-    console.log(link);
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
+    console.log(linkHTML);
 
     /* [DONE] Add link to list*/
-    html = html + link;
+    html = html + linkHTML;
   }
   titleList.insertAdjacentHTML('beforeend', html);
 
@@ -120,10 +123,11 @@ function generateTags() {
     for (let tag of articleTagsArray) {
 
       /*[DONE] generate HTML of the link */
-      const linkHtml = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const linkHTMLData = { id: '#tag-' + tag, title: tag };
+      const linkHTML = templates.articleLink(linkHTMLData);
 
       /*[DONE] add generated code to html variable */
-      html = html + linkHtml;
+      html = html + linkHTML;
 
       /* [NEW] check if this link is NOT already in allTags */
       if (!allTags.hasOwnProperty(tag)) {
@@ -241,12 +245,13 @@ function generateAuthors() {
   }
 
   const authorList = document.querySelector(optAuthorsListSelector);
- 
+
   let allAuthorsHTML = '';
   for (let author in allAuthors) {
-    allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + '(' + allAuthors[author] + ')</a></li>';
+    const linkHTMLData = { id: '#author-' + author, title: author + '(' + allAuthors[author] + ')' };
+    allAuthorsHTML += templates.articleLink(linkHTMLData);
   }
- 
+
   authorList.innerHTML = allAuthorsHTML;
 }
 
